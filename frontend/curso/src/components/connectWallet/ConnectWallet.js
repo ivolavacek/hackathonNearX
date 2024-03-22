@@ -1,15 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ethers } from 'ethers'; 
 import './ConnectWallet.css';
 import ModeContext from '../context/ModeContext';
 
 
 function ConnectWallet() {
-    const { mode } = useContext(ModeContext);
-    const [enderecoConectado, setEnderecoConectado] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [signer, setSigner] = useState();
-    
+  const { mode } = useContext(ModeContext);
+  const [enderecoConectado, setEnderecoConectado] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [signer, setSigner] = useState();
+  const [show, setShow] = useState('noshow');
+  
+  useEffect(() => {
+    conectarMetaMask();
+}, []);
     async function conectarMetaMask() {
       try {
         if (window.ethereum) {
@@ -25,14 +29,14 @@ function ConnectWallet() {
 
           if (enderecoConectado) {
             // Desconectar a carteira se já estiver conectada
-            setEnderecoConectado('');
-            console.log('Desconectado da MetaMask!');
+            // setEnderecoConectado('');
 
           } else {
             // Conectar a carteira se ainda não estiver conectada
             setEnderecoConectado(formatarEndereco(endereco));
             console.log('Conectado à MetaMask!');
             console.log('Endereço Conectado:', endereco);
+           
           }
         } else {
           console.error('MetaMask não detectado!');
@@ -41,6 +45,15 @@ function ConnectWallet() {
         console.error('Erro ao conectar à MetaMask:', error);
       }
     }
+    async function resetarEstado() {
+      setEndereco('');
+      setSigner(null);
+      setEnderecoConectado('');
+      console.log('Desconectado da MetaMask!');
+      
+      setShow('noshow');
+    }
+
 
     function formatarEndereco(endereco) {
       // Verifica se o endereço tem a formatação correta
@@ -56,10 +69,13 @@ function ConnectWallet() {
     }
   
     return (
-      <div className="buttons">
+      <div className={`buttons ${show}`}>
         <button className={`connect-button ${mode}`} onClick={conectarMetaMask}>
-          {enderecoConectado ? `${enderecoConectado}` : 'Conectar Carteira'}
+        {enderecoConectado ? enderecoConectado : 'Conectar Carteira'}
+         
         </button>
+        {enderecoConectado ?         <button className={`faucet ${show}`} onClick={() => resetarEstado()}>Desconectar</button> : ''}
+
       </div>
     );
   }

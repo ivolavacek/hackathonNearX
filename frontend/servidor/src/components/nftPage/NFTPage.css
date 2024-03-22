@@ -1,13 +1,107 @@
 .NFT{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+ 
+  
+}
+.Fundo{
+    background-color: rgb(209, 212, 215);
+    width: 100vw;
+    height: 100vh;
 }
 .NFT button{
     width: 200px;
-    height: 100px;
+    height: 60px;
+    background-color: white;
     color: black;
+    border-radius: 20px;
     font-size: 20pt;
-    margin: 50px;
+    
+}
+.NFT button:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.squareNFT{
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    padding: 0px 50px;
+    align-items: center;
+    gap: 50px;
+    justify-content: center;
+    border-radius: 10px;
+    border: 0.2px solid black;
+}
+.squareNFT > p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20pt;
+    text-align: center;
+    margin: 0;
+    
+}
+
+.squareNFTOwner{
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 150px;
+    padding: 0px 50px;
+    align-items: center;
+    gap: 50px;
+    padding: 10px 50px;
+    justify-content: center;
+    border-radius: 10px;
+    border: 0.2px solid black;
+}
+.squareNFTOwner a {
+    background-color: rgb(19, 140, 164);
+    width: 80%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 40px;
+    padding: 5px 10px;
+    font-size: 15pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 0.2px solid black;
+    
+}
+.squareNFTOwner > a:hover{
+    border: 0.2px solid black;
+    color: rgb(19, 140, 164);
+    background-color: white;
+}
+.squareNFTOwner > p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15pt;
+    text-align: center;
+    margin: 0;
+    
+}
+.texto2{
+    font-size: 20pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.texto2 a{
+    text-decoration: underline;
+    color: blue;
+}
+.texto2 a:hover{
+    text-decoration: underline;
+    color: rgb(104, 104, 240);
+}
+
+.Nfts{
+    display: flex;
+    gap: 15px;
+}
+.certificado{
+    background-color: rgb(137, 0, 165);
+    color: white;
 }

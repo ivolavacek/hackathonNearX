@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ethers } from 'ethers'; 
 import './ConnectWallet.css';
 import ModeContext from '../context/ModeContext';
@@ -13,6 +13,10 @@ function ConnectWallet() {
     const [signer, setSigner] = useState();
     const [show, setShow] = useState('noshow');
     
+    useEffect(() => {
+      conectarMetaMask();
+  }, []);
+  
     async function conectarMetaMask() {
       try {
         if (window.ethereum) {
@@ -22,14 +26,19 @@ function ConnectWallet() {
           const contas = await provider.listAccounts();
 
           if (contas.length > 0) {
-            setEndereco(contas[0].address);
-
+           
+           const enderecoAtual = await contas[0].address;
+          //  console.log(enderecoAtual)
+            setEndereco(enderecoAtual);
+            console.log(endereco == "");
+            
             setSigner(await provider.getSigner());
-            setEnderecoConectado(formatarEndereco(endereco));
+            setEnderecoConectado(formatarEndereco(contas[0].address));
             setShow('show');
 
             console.log('Conectado à MetaMask!');
             console.log('Endereço Conectado:', endereco);
+           
             return;
           }
 
@@ -40,6 +49,7 @@ function ConnectWallet() {
   
           // Solicitar permissão ao usuário para acessar a carteira MetaMask
           await provider.send('eth_requestAccounts', []);
+
   
           // Obter o endereço conectado
           setSigner(await provider.getSigner());
@@ -56,10 +66,11 @@ function ConnectWallet() {
       }
     }
 
-    function resetarEstado() {
+   async function resetarEstado() {
       setEndereco('');
-      setSigner('');
+      setSigner(null);
       setEnderecoConectado('');
+      
       setShow('noshow');
     }
 
@@ -80,16 +91,17 @@ function ConnectWallet() {
       <div className="carteira">
 
         <div className={`buttons ${show}`}>
-          <div className={`saldo ${show}`}>
-            <Saldo address={endereco} />
-          </div>
+        <div className={`saldo ${show}`}>
+        {endereco !== "" && endereco !== null && <Saldo address={endereco} />}
+      </div>
+
 
           <button className={`connect-button ${mode}`} onClick={conectarMetaMask}>
           {enderecoConectado ? enderecoConectado : 'Conectar Carteira'}
           </button>
 
           <button className={`faucet ${show}`} onClick={() => faucet(signer)}>Faucet</button>
-
+          <button className={`faucet ${show}`} onClick={() => resetarEstado()}>Desconectar</button>
         </div>
       </div>
     );

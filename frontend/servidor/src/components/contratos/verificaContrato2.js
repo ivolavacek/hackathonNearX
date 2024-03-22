@@ -141,9 +141,10 @@ async function verificarNFT() {
     const connectedContract = contractERC721.connect(signer);
     const resultado = await connectedContract.ownsToken(signer.address);
     console.log("Contrato2 | Verificação | 'ownsToken': ", resultado); //bool
+    
     return resultado
   } catch (error) {
-    console.error('Erro ao chamar a função:', error);
+    window.alert("Conecte a wallet para verificar se contém o SBT!");
   }
 }
 

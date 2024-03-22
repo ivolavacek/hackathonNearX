@@ -22,8 +22,16 @@ function NFTMint ({ func }) {
         }
 
         if (func === "verificar") {
-          setNft( await verificarNFT() ); //bool
-          console.log("NFTPage | Execute | NFT: ", nft)
+          const temNft = await verificarNFT();
+          setNft( temNft ); //bool
+          if(!temNft){
+            
+              window.alert("Você não possui o NFT!");
+            
+          }else{
+            window.alert("Você possui o NFT!");
+          }
+          console.log("NFTPage | Execute | NFT: ", temNft)
         }
 
       } catch (error) {
@@ -32,16 +40,17 @@ function NFTMint ({ func }) {
     }
 
     NFTFunctions();
-  }, []);
+  }, [func]);
 
   return (
     <div className="execute">
       <div className="mintFeedback">
-        {saldo ? saldo : 'não tem saldo'}
-        {mint ? 'você conseguiu mintar' : 'não foi possivel mintar'}
+        {/* {saldo ? saldo : 'não tem saldo'} */}
+        {() => {if(!saldo || !mint){window.alert("Transação não realizada. Possíveis motivos: Falta de Saldo e/ou Transação rejeitada.")}}}
+        {/* {mint ? 'você conseguiu mintar' : 'não foi possivel mintar'} */}
       </div>
       <div className="tokenFeedback">
-        {{nft} ? 'tem NFT' : 'não tem NFT'}
+        {/* {{nft} ? 'tem NFT' : 'não tem NFT'} */}
       </div>
     </div>
   );

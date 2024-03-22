@@ -56,25 +56,7 @@ const contractABI721 = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-            {
-                "internalType": "uint8",
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
-            {
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            },
             {
                 "internalType": "address",
                 "name": "spender",
@@ -171,6 +153,19 @@ const contractABI721 = [
     },
     {
         "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "name",
         "outputs": [
             {
@@ -194,8 +189,22 @@ const contractABI721 = [
         ],
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     }
 ]
+
 
 const { ethers } = require('ethers');
 
@@ -207,6 +216,7 @@ const contractERC20 = new ethers.Contract(contractAddressERC20, contractABI721, 
 
 async function verificarSaldo(endereco) {
   try {
+
     const resultado = await contractERC20.balanceOf(endereco.address);
     console.log("Contrato1 | Saldo: ", resultado); //uint256
     return resultado

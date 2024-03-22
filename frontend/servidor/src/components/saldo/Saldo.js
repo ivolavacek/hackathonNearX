@@ -8,12 +8,13 @@ function Saldo (endereco) {
 
   async function fetchSaldo() {
     try {
+      console.log(endereco)
       const resultado = await verificarSaldo(endereco);
       const saldoNumero =  Number(resultado);
       const saldoDividido = saldoNumero/10**18;
       setSaldo(saldoDividido);
       
-      console.log('Saldo:', saldo);
+      console.log('Saldo:', saldoDividido);
     } catch (error) {
       console.error('Erro ao verificar saldo:', error);
     }

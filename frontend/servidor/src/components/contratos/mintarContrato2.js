@@ -146,22 +146,33 @@ async function mintarNFT() {
     const saldoNumerico = Number(saldo.toString()) * 10**-18;
     let resultado = false;
     const temNFT = await verificarNFT(); //bool
-    
+    console.log(signer.address)
+  
     if (saldoNumerico >= 50 && temNFT === false) {
       const transferiu = await compraNFT(); //bool
             
       if (transferiu) {
         resultado = await contractERC721.safeMint(signer.address, "https://givaccess.com/1115002");
+        if(resultado){
+          window.alert("Parabéns, você clamou o SBT para o acesso ao curso! Recarregue a página!")
+        }
       }
     } else {
+      if(saldoNumerico <50){
         window.alert("Saldo insuficiente, transação não realizada.")
+      }else{
+        window.alert("NFT já coletado!")
+      }
     }
  
     console.log("Contrato2 | Mintar | Saldo: ", saldoNumerico); //unit256
     console.log("Contrato2 | Mintar | Resultado 'safeMint': ", resultado); //function
     return { saldoNumerico, resultado }
   } catch (error) {
-    console.error('Erro ao chamar a função:', error);
+
+     window.alert("Conecte a wallet antes de realizar o Mint!");
+
+  
   }
 }
 
