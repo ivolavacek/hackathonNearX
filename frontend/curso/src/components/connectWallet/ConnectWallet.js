@@ -58,8 +58,16 @@ function ConnectWallet() {
     return (
       <div className="buttons">
         <button className={`connect-button ${mode}`} onClick={conectarMetaMask}>
+<<<<<<< Updated upstream
           {enderecoConectado ? `${enderecoConectado}` : 'Conectar Carteira'}
         </button>
+=======
+        {enderecoConectado ? enderecoConectado : 'Conectar Carteira'}
+        </button>
+
+        {enderecoConectado ? <button className={`desconectar ${show} ${mode}`} onClick={() => resetarEstado()}>Desconectar</button> : ''}
+
+>>>>>>> Stashed changes
       </div>
     );
   }

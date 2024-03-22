@@ -25,13 +25,42 @@
   display: none;
 }
 
+.desconectar.noshow {
+  display: none;
+}
+
 .saldo.noshow {
   display: none;
 }
 
 .faucet {
-  margin-right: 30px;
+  margin-right: 0px;
   border-radius: 10px;
+}
+
+.desconectar {
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.faucet.Light {
+  background-color: #fff;
+  color: #000
+}
+  
+.faucet.Dark {
+  background-color: #555;
+  color: #fff;
+}
+
+.desconectar.Light {
+  background-color: #fff;
+  color: #000
+}
+  
+.desconectar.Dark {
+  background-color: #555;
+  color: #fff;
 }
 
 .saldo {

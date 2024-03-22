@@ -88,8 +88,13 @@ function ConnectWallet() {
           {enderecoConectado ? enderecoConectado : 'Conectar Carteira'}
           </button>
 
+<<<<<<< Updated upstream
           <button className={`faucet ${show}`} onClick={() => faucet(signer)}>Faucet</button>
 
+=======
+          <button className={`faucet ${show} ${mode}`} onClick={() => faucet(signer)}>Faucet</button>
+          <button className={`desconectar ${show} ${mode}`} onClick={() => resetarEstado()}>Desconectar</button>
+>>>>>>> Stashed changes
         </div>
       </div>
     );

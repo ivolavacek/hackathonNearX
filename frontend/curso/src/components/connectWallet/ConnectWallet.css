@@ -36,4 +36,22 @@
 
 .faucet-button {
   max-width: auto;
+<<<<<<< Updated upstream
+=======
+}
+
+.desconectar {
+  margin-right: 30px;
+  border-radius: 10px;
+}
+
+.desconectar.Light {
+  background-color: #fff;
+  color: #000
+}
+  
+.desconectar.Dark {
+  background-color: #555;
+  color: #fff;
+>>>>>>> Stashed changes
 }
