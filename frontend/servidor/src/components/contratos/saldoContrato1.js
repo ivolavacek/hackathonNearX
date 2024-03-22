@@ -208,10 +208,10 @@ const contractERC20 = new ethers.Contract(contractAddressERC20, contractABI721, 
 async function verificarSaldo(endereco) {
   try {
     const resultado = await contractERC20.balanceOf(endereco.address);
-    console.log("Contrato1 | Saldo: ", resultado); //uint256
+    // console.log("Contrato1 | Saldo: ", resultado); //uint256
     return resultado
   } catch (error) {
-    console.error('Erro ao chamar a função:', error);
+    // console.error('Erro ao chamar a função:', error);
   }
 }
 
